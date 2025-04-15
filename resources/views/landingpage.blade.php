@@ -63,50 +63,50 @@
         <h2><b>HUBUNGI KAMI</b></h2>
         <div class="d-flex flex-column">
           {{-- Notifikasi sukses --}}
-@if(session('success'))
-<div class="alert alert-success mt-3">
-    {{ session('success') }}
-</div>
-@endif
+          @if(session('success'))
+        <div class="alert alert-success mt-3">
+        {{ session('success') }}
+        </div>
+      @endif
 
-{{-- Validasi error --}}
-@if ($errors->any())
-<div class="alert alert-danger mt-3">
-    <ul class="mb-0">
-        @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-</div>
-@endif
+          {{-- Validasi error --}}
+          @if ($errors->any())
+        <div class="alert alert-danger mt-3">
+        <ul class="mb-0">
+          @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+      @endforeach
+        </ul>
+        </div>
+      @endif
 
           <form action="{{ route('contact.submit') }}" method="POST">
             @csrf
             <label for="">Nama</label>
             <input type="text" name="name" class="form-control">
-          
+
             <label for="">E-mail</label>
             <input type="email" name="email" class="form-control">
-          
+
             <label for="">Pesan</label>
             <textarea name="message" class="form-control"></textarea>
-          
-            <button type="submit" class="btn btn-primary my-3">Submit</button>
+
+            <button type="submit" class="btn btn-primary my-3">Kirim</button>
           </form>
-          
+
         </div>
       </div>
-  
+
       <div class="col-12 col-lg-6 px-4 mt-4 mt-lg-0 d-flex flex-column align-items-center">
         <div id="map" class="w-75" style="height: 300px; border-radius: 20px;"></div>
         <a href="https://www.google.com/maps/place/Jl.+Merdeka,+Gondek,+Kec.+Mojowarno,+Kabupaten+Jombang,+Jawa+Timur/@-7.6222691,112.2788456,283m/data=!3m1!1e3!4m6!3m5!1s0x2e786985cf8d211b:0xc44807a69f9372f8!8m2!3d-7.6220162!4d112.2793898!16s%2Fg%2F11fls24wq6?entry=ttu&g_ep=EgoyMDI1MDIxOS4xIKXMDSoASAFQAw%3D%3D"
-           class="my-3" target="_blank">Buka di Google Maps</a>
+          class="my-3" target="_blank">Buka di Google Maps</a>
       </div>
     </div>
   </section>
 
-  
-  
+
+
 
 
   <main id="main">
@@ -144,32 +144,35 @@
 
     <!-- Template Main JS File -->
     <script src="{{ asset('landingpage/assets/js/main.js') }}"></script>
-<!-- ======= Footer ======= -->
-<footer style="background-color: #292B78; color: white; padding: 30px 0;">
-  <div class="container d-flex flex-column flex-lg-row justify-content-between align-items-center text-center text-lg-start">
-    
-    <!-- Logo dan Nama Perusahaan -->
-    <div class="mb-4 mb-lg-0">
-      <img src="{{ asset('landingpage/assets/img/logo-ptmpg-putih.png') }}" alt="Logo PT Mutiara Putri Gemilang" width="150">
-      <div style="font-weight: bold; margin-top: 10px;">
-        PT. MUTIARA PUTRI GEMILANG<br>
-        <small>PROPERTY REAL ESTATE</small>
+    <!-- ======= Footer ======= -->
+    <footer style="background-color: #292B78; color: white; padding: 30px 0;">
+      <div
+        class="container d-flex flex-column flex-lg-row justify-content-between align-items-center text-center text-lg-start">
+
+        <!-- Logo dan Nama Perusahaan -->
+        <div class="mb-4 mb-lg-0">
+          <img src="{{ asset('landingpage/assets/img/logo-ptmpg-putih.png') }}" alt="Logo PT Mutiara Putri Gemilang"
+            width="150">
+          <div style="font-weight: bold; margin-top: 10px;">
+            PT. MUTIARA PUTRI GEMILANG<br>
+            <small>PROPERTY REAL ESTATE</small>
+          </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="mb-4 mb-lg-0">
+          © 2024 CycleTech. All Rights Reserved.
+        </div>
+
+        <!-- Kontak -->
+        <div>
+          <div>Email : ptmpg@gmail.com</div>
+          <div>+6285755262701</div>
+          <div>Jln. Merdeka Ds. Gondek Kec. Mojowarno, Jombang</div>
+        </div>
+
       </div>
-    </div>
-
-    <!-- Copyright -->
-    <div class="mb-4 mb-lg-0">
-      © 2024 CycleTech. All Rights Reserved.
-    </div>
-
-    <!-- Kontak -->
-    <div>
-      <div>Email : ptmpg@gmail.com</div>
-      <div>+6285755262701</div>
-      <div>Jln. Merdeka Ds. Gondek Kec. Mojowarno, Jombang</div>
-    </div>
-
-  </div>
-</footer>
+    </footer>
 </body>
+
 </html>

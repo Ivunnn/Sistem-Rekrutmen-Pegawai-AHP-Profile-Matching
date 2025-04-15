@@ -1,26 +1,6 @@
+# Sistem Pendukung Keputusan Rekrutmen Karyawan Menggunakan Metode AHP dan Profile Matching
+Sistem Pendukung Keputusan Rekrutmen Karyawan Menggunakan Metode AHP dan Profile Matching pada PT Mutiara Putri Gemilang
 
-Hallo, I'm Muhammad Mukharir, firstly i want to say thanks to:
-
-1. Thanks to my parent who always support me. <br>
-2. Thanks to my friends who always share experience with me.  <br>
-3. Thanks to developer who indirectly support me through stackoverflow, tutorial website, forum, etc.  <br>
-4. Thanks to who post website below, it really great help to get start learn laravel from zero to build Laptop Selection DSS with AHP and PM method.  <br>
-    https://www.itsolutionstuff.com/post/laravel-8-user-roles-and-permissions-tutorialexample.html  <br>
-    https://cafeteria.id/2020/09/14/cara-integrasi-laravel-8-dengan-laravel-adminlte/  <br>
-
-I can make this system because of the help from all of you, so again, Thanks you.. :)
-
-So, here it goes, Laptop Selection DSS with AHP and PM method build on laravel 8 framework, enjoy! :)
-
-Created by: Muhammad Mukharir <br>
-Untuk Skripsi S1
-
-===  CS17 ===
-
-# Sistem Pendukung Keputusan Pemilihan Laptop Menggunakan Metode AHP dan Profile Matching
-Sistem Pendukung Keputusan Pemilihan Laptop Menggunakan Metode AHP dan Profile Matching
-# Laptop Selection Decision Support System Using AHP Method and Profile Matching
-Simple decision support system application with combination of AHP method and Profile Matching method.
 
 ## Installation
 1. git clone https://github.com/MuhammadMukharir/SPK-pemilihan-laptop-metode-AHP-dan-Profile-Matching-PM.git projectName
@@ -28,22 +8,26 @@ Simple decision support system application with combination of AHP method and Pr
 3. composer install
 4. npm install
 5. edit file .env to fit your environment such your DatabaseName
-6. php artisan key:generate
-7. Create an empty database for our application
-8. In the .env file, add database information to allow Laravel to connect to the database
-9. php artisan migrate
-10. php artisan db:seed
-11. php artisan serve
+6. edit file .env to activate contact us feature
+MAIL_MAILER=smtp
+MAIL_ADMIN=herdiantoivan45@gmail.com
+MAIL_HOST=sandbox.smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=91926a4f6e3823
+MAIL_PASSWORD=16f389a4433bf1
+MAIL_ENCRYPTION=null
+MAIL_FROM_ADDRESS=herdiantoivan45@gmail.com
+MAIL_FROM_NAME="PT Mutiara Putri Gemilang"
+7. php artisan key:generate
+8. Create an empty database for our application
+9. In the .env file, add database information to allow Laravel to connect to the database
+10. php artisan migrate
+11. php artisan db:seed
+12. php artisan serve
 
 login <br>
 email: admin@gmail.com <br>
 pass : 123456
-
-
-## Screenshot
-
-![image](https://user-images.githubusercontent.com/32015601/116123652-77111400-a6ed-11eb-8a95-273e1465ad98.png)
-![image](https://user-images.githubusercontent.com/32015601/116775709-a5487800-aa8e-11eb-83f8-c7f195e25095.png)
 
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
