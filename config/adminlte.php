@@ -283,6 +283,13 @@ return [
             'can'  => 'user',
         ],
         [
+            'text' => 'Manajemen Kriteria',
+            'url'  => 'kriteria',
+            'icon' => 'fas fa-fw fa-bullseye',
+            'can'  => 'admin',
+            'icon_color' => '',
+        ],
+        [
             'text' => 'Pembobotan AHP',
             'url'  => 'user/bobot/ahp',
             'icon' => 'fas fa-fw fa-balance-scale',
@@ -296,6 +303,7 @@ return [
             'can'  => 'user',
             'icon_color' => '',
         ],
+        
 
         // account setting
         [
@@ -348,13 +356,6 @@ return [
             'can'  => 'admin',
             'icon_color' => '',
         ],
-        // [
-        //     'text' => 'PRESET PREFERENCE',
-        //     'url'  => 'presetpreferences',
-        //     'icon' => 'fas fa-fw fa-bullseye',
-        //     'can'  => 'admin',
-        //     'icon_color' => '',
-        // ],
         // [
         //     'text' => 'AHP WEIGHTING ADMIN',
         //     'url'  => 'ahp',

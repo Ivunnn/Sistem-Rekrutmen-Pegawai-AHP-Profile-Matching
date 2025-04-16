@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\KriteriaController;
 use App\Http\Controllers\PresetPreferenceController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\SearchController;
@@ -37,6 +38,12 @@ Route::get('/', function () {
 Auth::routes();
   
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::resource('kriteria', KriteriaController::class)->parameters([
+    'kriteria' => 'kriteria'
+]);
+// Route::put('/kriteria/{kriteria}', [KriteriaController::class, 'update'])->name('kriteria.update');
+
   
 Route::group(['middleware' => ['auth']], function() {
 
