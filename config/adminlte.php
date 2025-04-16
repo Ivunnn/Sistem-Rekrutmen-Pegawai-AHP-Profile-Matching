@@ -291,7 +291,7 @@ return [
         ],
         [
             'text' => 'Pembobotan AHP',
-            'url'  => 'user/bobot/ahp',
+            'url'  => 'ahp',
             'icon' => 'fas fa-fw fa-balance-scale',
             'can'  => 'user',
             'icon_color' => '',

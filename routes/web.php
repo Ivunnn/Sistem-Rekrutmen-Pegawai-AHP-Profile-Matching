@@ -39,6 +39,10 @@ Auth::routes();
   
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+Route::get('/ahp/hitung', [AHPController::class, 'hitungAHP'])->name('ahp.calculate');
+Route::post('/ahp/simpan-bobot', [AHPController::class, 'simpanBobotAHP'])->name('ahp.saveAHPResult');
+
+
 Route::resource('kriteria', KriteriaController::class)->parameters([
     'kriteria' => 'kriteria'
 ]);
