@@ -41,6 +41,17 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/ahp/hitung', [AHPController::class, 'hitungAHP'])->name('ahp.calculate');
 Route::post('/ahp/simpan-bobot', [AHPController::class, 'simpanBobotAHP'])->name('ahp.saveAHPResult');
+Route::post('/ahp/simpan', [AHPController::class, 'simpanHasilAHP'])->name('ahp.simpan');
+Route::get('/ahp/create', [AHPController::class, 'create'])->name('ahp.create');
+Route::post('/ahp/store', [AHPController::class, 'store'])->name('ahp.store');
+
+Route::prefix('ahp')->name('ahp.')->middleware(['auth'])->group(function () {
+    Route::get('/', [AHPController::class, 'index'])->name('index');
+    Route::get('/create', [AHPController::class, 'create'])->name('create');
+    Route::post('/', [AHPController::class, 'store'])->name('store');
+    Route::get('/{ahp}', [AHPController::class, 'show'])->name('show');
+    Route::delete('/{ahp}', [AHPController::class, 'destroy'])->name('destroy');
+});
 
 
 Route::resource('kriteria', KriteriaController::class)->parameters([

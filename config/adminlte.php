@@ -279,15 +279,8 @@ return [
 
         // metode pembobotan
         [
-            'header' => 'METODE PEMBOBOTAN',
+            'header' => 'METODE AHP',
             'can'  => 'user',
-        ],
-        [
-            'text' => 'Manajemen Kriteria',
-            'url'  => 'kriteria',
-            'icon' => 'fas fa-fw fa-bullseye',
-            'can'  => 'admin',
-            'icon_color' => '',
         ],
         [
             'text' => 'Pembobotan AHP',
@@ -297,6 +290,17 @@ return [
             'icon_color' => '',
         ],
         [
+            'text' => 'Manajemen Kriteria',
+            'url'  => 'kriteria',
+            'icon' => 'fas fa-fw fa-bullseye',
+            'can'  => 'admin',
+            'icon_color' => '',
+        ],
+        [
+            'header' => 'METODE Profile Matching',
+            'can'  => 'user',
+        ],
+        [
             'text' => 'Pembobotan langsung',
             'url'  => 'user/bobot/langsung',
             'icon' => 'fas fa-fw fa-balance-scale',
@@ -304,7 +308,21 @@ return [
             'icon_color' => '',
         ],
         
+        [
+            'text' => 'Manajemen Nilai Ideal',
+            'url'  => '',
+            'icon' => 'fas fa-fw fa-bullseye',
+            'can'  => 'admin',
+            'icon_color' => '',
+        ],
 
+        [
+            'text' => 'Manajemen Aktual',
+            'url'  => '',
+            'icon' => 'fas fa-fw fa-bullseye',
+            'can'  => 'admin',
+            'icon_color' => '',
+        ],
         // account setting
         [
             'header' => 'account_settings',
@@ -350,7 +368,7 @@ return [
             'icon_color' => '',
         ],
         [
-            'text' => 'Manajemen Pegawai',
+            'text' => 'Manajemen Pelamar',
             'url'  => 'pegawais',
             'icon' => 'fas fa-fw fa-laptop',
             'can'  => 'admin',
