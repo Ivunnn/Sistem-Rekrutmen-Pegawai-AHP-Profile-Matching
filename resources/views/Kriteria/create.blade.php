@@ -19,10 +19,6 @@
                     <label for="nama">Nama Kriteria</label>
                     <input type="text" name="nama" class="form-control" required>
                 </div>
-                <div class="form-group">
-                    <label for="bobot">Bobot (0 - 1)</label>
-                    <input type="number" step="0.01" name="bobot" class="form-control" required>
-                </div>
             </div>
             <div class="card-footer text-right">
                 <a href="{{ route('kriteria.index') }}" class="btn btn-secondary">Kembali</a>

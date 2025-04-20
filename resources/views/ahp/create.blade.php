@@ -105,7 +105,7 @@
           <tr>
           <th class="goCenter">No</th>
           <th class="" style="text-align: left">Kriteria</th>
-          <th>Bobot Hasil</th>
+          {{-- <th>Bobot Hasil</th> --}}
           </tr>
         </thead>
         <tbody>
@@ -113,8 +113,8 @@
         <tr>
         <td class="custColor goCenter">C{{ $index + 1 }}</td>
         <td><label>{{ $kriteria->nama }}</label></strong></td>
-        <td><input type="number" name="bobot_{{ $kriteria->id }}" id="bobot_{{ $kriteria->id }}"
-        value="{{ old('bobot_' . $kriteria->id, $kriteria->bobot) }}" readonly></td>
+        {{-- <td><input type="number" name="bobot_{{ $kriteria->id }}" id="bobot_{{ $kriteria->id }}"
+        value="{{ old('bobot_' . $kriteria->id, $kriteria->bobot) }}" readonly></td> --}}
         </tr>
       @endforeach
         </tbody>
@@ -373,7 +373,7 @@
               <td>
                 <select name="c{{ $i + 1 }}c{{ $j + 1 }}" id="c{{ $i + 1 }}c{{ $j + 1 }}" class="form-control comparison-select" data-inverse="c{{ $j + 1 }}c{{ $i + 1 }}" required>
                   @foreach ($sharedOptions as $item)
-                    <option value="{{ $item[0] }}" 
+                    <option value="{{ $item[0] }}"
                       @if ($item[0] === '') disabled selected @endif>
                       {{ $item[1] }}
                     </option>
@@ -395,22 +395,22 @@
     document.addEventListener('DOMContentLoaded', function() {
       // Set up event listeners for all comparison selects
       const comparisonSelects = document.querySelectorAll('.comparison-select');
-      
+
       comparisonSelects.forEach(select => {
         select.addEventListener('change', function() {
           updateInverseValue(this);
         });
-        
+
         // Initialize inverse values on page load
         if (select.value) {
           updateInverseValue(select);
         }
       });
-      
+
       function updateInverseValue(selectElement) {
         const inverseId = selectElement.getAttribute('data-inverse');
         const inverseElement = document.getElementById(inverseId);
-        
+
         if (inverseElement && selectElement.value) {
           const value = parseFloat(selectElement.value);
           if (!isNaN(value) && value !== 0) {
@@ -427,7 +427,7 @@
       const selects = document.querySelectorAll('.comparison-select');
       selects.forEach(select => {
         select.selectedIndex = 0; // Reset to first option (usually empty)
-        
+
         // Trigger change event to update inverse values
         const event = new Event('change');
         select.dispatchEvent(event);
