@@ -27,7 +27,6 @@
                 <thead>
                     <tr>
                         <th>Nama Kriteria</th>
-                        <th>Bobot</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -35,9 +34,6 @@
                     @foreach($kriterias as $kriteria)
                         <tr>
                             <td>{{ $kriteria->nama }}</td>
-                            <td>
-                                {{ $kriteria->bobot !== null ? number_format($kriteria->bobot, 3) : 'Belum dihitung' }}
-                            </td>
                             <td>
                                 <a href="{{ route('kriteria.edit', $kriteria->id) }}" class="btn btn-sm btn-warning">
                                     <i class="fas fa-edit"></i> Edit

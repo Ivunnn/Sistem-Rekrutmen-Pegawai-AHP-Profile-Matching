@@ -5,10 +5,10 @@
 @section('content_header')
 <div class="row mb-2">
   <div class="col-sm-6">
-    <h1>Detail Perhitungan AHP</h1>
+    <h1>AHP Calculation Details</h1>
   </div>
   <div class="col-sm-6">
-    <a class="btn btn-secondary float-right" href="{{ route('ahp.index') }}">Kembali</a>
+    <a class="btn btn-secondary float-right" href="{{ route('user.bobot.ahp.index') }}">Back</a>
   </div>
 </div>
 @stop
@@ -19,12 +19,12 @@
     <div class="col-md-6">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Information Dasar</h3>
+          <h3 class="card-title">Basic Information</h3>
         </div>
         <div class="card-body">
           <table class="table">
             <tr>
-              <th style="width: 30%">Nama</th>
+              <th style="width: 30%">Name</th>
               <td>{{ $calculation->nama }}</td>
             </tr>
             <tr>
@@ -43,11 +43,11 @@
               </td>
             </tr>
             <tr>
-              <th>Dibuat Oleh</th>
+              <th>Created By</th>
               <td>{{ $calculation->user->name }}</td>
             </tr>
             <tr>
-              <th>Dibuat Pada</th>
+              <th>Created At</th>
               <td>{{ $calculation->created_at->format('d M Y H:i') }}</td>
             </tr>
           </table>
@@ -58,15 +58,15 @@
     <div class="col-md-6">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Bobot Kriteria</h3>
+          <h3 class="card-title">Criteria Weights</h3>
         </div>
         <div class="card-body">
           <table class="table table-bordered">
             <thead>
               <tr>
                 <th>No</th>
-                <th>Nama Kriteria</th>
-                <th>Bobot</th>
+                <th>Criteria Name</th>
+                <th>Weight</th>
               </tr>
             </thead>
             <tbody>

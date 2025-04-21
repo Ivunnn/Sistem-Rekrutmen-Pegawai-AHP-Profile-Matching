@@ -23,7 +23,7 @@ class KriteriaController extends Controller
         $data = $request->except('_token'); // Hindari menyimpan _token ke database
         Kriteria::create($data);
 
-        return redirect()->back()->with('success', 'Data kriteria berhasil disimpan!');
+        return redirect()->route('kriteria.index')->with('success', 'Data kriteria berhasil disimpan!');
     }
 
     public function edit(Kriteria $kriteria)

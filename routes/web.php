@@ -34,7 +34,7 @@ Route::post('/contact', [ContactController::class, 'submit'])->name('contact.sub
 Route::get('/', function () {
     return view('landingpage');
 });
-  
+
 Auth::routes();
   
 Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -59,7 +59,9 @@ Route::resource('kriteria', KriteriaController::class)->parameters([
 ]);
 // Route::put('/kriteria/{kriteria}', [KriteriaController::class, 'update'])->name('kriteria.update');
 
-  
+Route::resource('nilai-ideal', \App\Http\Controllers\NilaiIdealController::class);
+
+
 Route::group(['middleware' => ['auth']], function() {
 
     Route::group(['middleware' => ['role:Admin']], function () {

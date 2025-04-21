@@ -310,7 +310,7 @@ return [
         
         [
             'text' => 'Manajemen Nilai Ideal',
-            'url'  => '',
+            'url'  => 'nilai-ideal',
             'icon' => 'fas fa-fw fa-bullseye',
             'can'  => 'admin',
             'icon_color' => '',
