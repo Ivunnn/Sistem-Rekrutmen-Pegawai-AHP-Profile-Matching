@@ -60,7 +60,7 @@ Route::resource('kriteria', KriteriaController::class)->parameters([
 // Route::put('/kriteria/{kriteria}', [KriteriaController::class, 'update'])->name('kriteria.update');
 
 Route::resource('nilai-ideal', \App\Http\Controllers\NilaiIdealController::class);
-
+Route::resource('pegawai', PegawaiController::class);
 
 Route::group(['middleware' => ['auth']], function() {
 
@@ -151,8 +151,7 @@ Route::group(['middleware' => ['auth']], function() {
 
 });
 
+
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
-Route::resource('pegawai', PegawaiController::class);
-Route::resource('pegawais', PegawaiController::class);

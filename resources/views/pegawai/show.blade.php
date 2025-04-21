@@ -1,66 +1,66 @@
 @extends('adminlte::page')
 
-@section('title', 'Detail Pegawai')
+@section('title', 'Manajemen Pegawai')
 
 @section('content_header')
-<h2>Detail Pegawai</h2>
-<div class="pull-right">
-    <a class="btn btn-secondary" href="{{ route('pegawai.index') }}">Kembali</a>
-    <a class="btn btn-primary" href="{{ route('pegawai.edit', $pegawai->id) }}">Edit</a>
-</div>
-@stop
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Detail Pegawai</div>
 
-@section('content')
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th width="30%">Nama</th>
+                                <td>{{ $pegawai->name }}</td>
+                            </tr>
+                            <tr>
+                                <th>Bagian Dilamar</th>
+                                <td>{{ $pegawai->bagian_dilamar }}</td>
+                            </tr>
+                            <tr>
+                                <th>Pendidikan</th>
+                                <td>{{ $pegawai->pendidikan ?? '-' }}</td>
+                            </tr>
+                            <tr>
+                                <th>Pengalaman Kerja</th>
+                                <td>{{ $pegawai->pengalaman_kerja ?? '-' }}</td>
+                            </tr>
+                            <tr>
+                                <th>Sertifikasi Pendukung</th>
+                                <td>{{ $pegawai->sertifikasi_pendukung ?? '-' }}</td>
+                            </tr>
+                            <tr>
+                                <th>Kemampuan</th>
+                                <td>{{ $pegawai->kemampuan ?? '-' }}</td>
+                            </tr>
+                            <tr>
+                                <th>CV</th>
+                                <td>
+                                    @if($pegawai->cv)
+                                        <a href="{{ asset('storage/cv/' . $pegawai->cv) }}" target="_blank" class="btn btn-sm btn-info">Lihat CV</a>
+                                    @else
+                                        Tidak ada CV
+                                    @endif
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
 
-<section class="content">
-    <div class="card">
-        <div class="card-body p-0">
-            <table class="table table-hover table-striped">
-                <tr>
-                    <td><strong>No Peserta</strong></td>
-                    <td>{{ $pegawai->no_peserta }}</td>
-                </tr>
-                <tr>
-                    <td><strong>Nama</strong></td>
-                    <td>{{ $pegawai->name }}</td>
-                </tr>
-                <tr>
-                    <td><strong>Bagian yang Dilamar</strong></td>
-                    <td>{{ $pegawai->bagian_dilamar }}</td>
-                </tr>
-                <tr>
-                    <td><strong>Pendidikan</strong></td>
-                    <td>{{ $pegawai->pendidikan }}</td>
-                </tr>
-                <tr>
-                    <td><strong>Pengalaman Kerja</strong></td>
-                    <td>{{ $pegawai->pengalaman_kerja }}</td>
-                </tr>
-                <tr>
-                    <td><strong>Wawancara</strong></td>
-                    <td>{{ $pegawai->wawancara }}</td>
-                </tr>
-                <tr>
-                    <td><strong>Sertifikasi Pendukung</strong></td>
-                    <td>{{ $pegawai->sertifikasi_pendukung }}</td>
-                </tr>
-                <tr>
-                    <td><strong>Kemampuan</strong></td>
-                    <td>{{ $pegawai->kemampuan }}</td>
-                </tr>
-                <tr>
-                    <td><strong>CV</strong></td>
-                    <td>
-                        @if($pegawai->cv)
-                            <a href="{{ asset('storage/cv/' . $pegawai->cv) }}" target="_blank">Lihat CV</a>
-                        @else
-                            Tidak ada file CV
-                        @endif
-                    </td>
-                </tr>
-            </table>
+                    <div class="mt-3">
+                        <a href="{{ route('pegawai.edit', $pegawai->id) }}" class="btn btn-warning">Edit</a>
+                        <a href="{{ route('pegawai.index') }}" class="btn btn-secondary">Kembali</a>
+                        <form action="{{ route('pegawai.destroy', $pegawai->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Hapus</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</section>
-
+</div>
 @endsection

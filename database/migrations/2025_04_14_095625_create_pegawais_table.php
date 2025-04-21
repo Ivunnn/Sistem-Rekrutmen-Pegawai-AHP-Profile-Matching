@@ -10,11 +10,13 @@ class CreatePegawaisTable extends Migration
     {
         Schema::create('pegawais', function (Blueprint $table) {
             $table->id();
-            $table->string('no_peserta')->unique();
             $table->string('name');
-            $table->date('tanggal'); // Tanggal lahir / masuk kerja bisa disesuaikan
-            $table->string('jabatan');
-            $table->string('bagian');
+            $table->string('bagian_dilamar');
+            $table->string('pendidikan')->nullable();
+            $table->string('pengalaman_kerja')->nullable();
+            $table->string('sertifikasi_pendukung')->nullable();
+            $table->string('kemampuan')->nullable();
+            $table->string('cv')->nullable();
             $table->timestamps();
         });
     }

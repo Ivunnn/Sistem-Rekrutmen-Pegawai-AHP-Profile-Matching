@@ -369,7 +369,7 @@ return [
         ],
         [
             'text' => 'Manajemen Pelamar',
-            'url'  => 'pegawais',
+            'url'  => 'pegawai',
             'icon' => 'fas fa-fw fa-laptop',
             'can'  => 'admin',
             'icon_color' => '',

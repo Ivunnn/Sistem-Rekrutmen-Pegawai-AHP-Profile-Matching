@@ -3,62 +3,114 @@
 @section('title', 'Manajemen Pegawai')
 
 @section('content_header')
-    <h2> Tambah Data Pegawai </h2>
-@stop
+<div class="container-fluid">
+    <div class="card-header text-lg">Tambah Pegawai Baru</div>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
 
-@section('content')
+                <div class="card-body">
+                    <form method="POST" action="{{ route('pegawai.store') }}" enctype="multipart/form-data">
+                        @csrf
 
-<form id="employeeCreateForm" action="{{ route('pegawai.store') }}" method="POST" enctype="multipart/form-data">
-    @csrf
+                        <div class="form-group row mb-3">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Nama</label>
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
 
-    <div class="pull-right mb-3">
-        <a class="btn btn-secondary" href="{{ route('pegawai.index') }}">Kembali</a>
-        <button type="submit" class="btn btn-primary">Simpan</button>
-    </div>
+                        <div class="form-group row mb-3">
+                            <label for="bagian_dilamar" class="col-md-4 col-form-label text-md-right">Bagian Yang Dilamar</label>
+                            <div class="col-md-6">
+                                <input id="bagian_dilamar" type="text" class="form-control @error('bagian_dilamar') is-invalid @enderror" name="bagian_dilamar" value="{{ old('bagian_dilamar') }}" required>
+                                @error('bagian_dilamar')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
 
-    <div class="row" style="overflow: auto; max-height: 80vh">
-        <div class="column">
-            <div class="form-group col-md-11">
-                <strong>No Peserta:</strong>
-                <input type="text" name="no_peserta" class="form-control" placeholder="Contoh: PGW001" required>
-            </div>
-            <div class="form-group col-md-11">
-                <strong>Nama Pegawai:</strong>
-                <input type="text" name="name" class="form-control" placeholder="Nama lengkap" required>
-            </div>
-            <div class="form-group col-md-11">
-                <strong>Bagian yang Dilamar:</strong>
-                <input type="text" name="bagian_dilamar" class="form-control" placeholder="Contoh: IT Support" required>
-            </div>
-            <div class="form-group col-md-11">
-                <strong>Pendidikan:</strong>
-                <input type="text" name="pendidikan" class="form-control" placeholder="Contoh: S1 Teknik Informatika">
-            </div>
-            <div class="form-group col-md-11">
-                <strong>Pengalaman Kerja:</strong>
-                <textarea name="pengalaman_kerja" class="form-control" rows="3" placeholder="Contoh: 2 tahun sebagai admin"></textarea>
+                        <div class="form-group row mb-3">
+                            <label for="pendidikan" class="col-md-4 col-form-label text-md-right">Pendidikan</label>
+                            <div class="col-md-6">
+                                <textarea id="pendidikan" class="form-control @error('pendidikan') is-invalid @enderror" name="pendidikan">{{ old('pendidikan') }}</textarea>
+                                @error('pendidikan')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-3">
+                            <label for="pengalaman_kerja" class="col-md-4 col-form-label text-md-right">Pengalaman Kerja</label>
+                            <div class="col-md-6">
+                                <textarea id="pengalaman_kerja" class="form-control @error('pengalaman_kerja') is-invalid @enderror" name="pengalaman_kerja">{{ old('pengalaman_kerja') }}</textarea>
+                                @error('pengalaman_kerja')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-3">
+                            <label for="sertifikasi_pendukung" class="col-md-4 col-form-label text-md-right">Sertifikasi Pendukung</label>
+                            <div class="col-md-6">
+                                <textarea id="sertifikasi_pendukung" class="form-control @error('sertifikasi_pendukung') is-invalid @enderror" name="sertifikasi_pendukung">{{ old('sertifikasi_pendukung') }}</textarea>
+                                @error('sertifikasi_pendukung')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-3">
+                            <label for="kemampuan" class="col-md-4 col-form-label text-md-right">Kemampuan</label>
+                            <div class="col-md-6">
+                                <textarea id="kemampuan" class="form-control @error('kemampuan') is-invalid @enderror" name="kemampuan">{{ old('kemampuan') }}</textarea>
+                                @error('kemampuan')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-3">
+                            <label for="cv" class="col-md-4 col-form-label text-md-right">CV (PDF/DOC/DOCX)</label>
+                            <div class="col-md-6">
+                                <input id="cv" type="file" class="form-control @error('cv') is-invalid @enderror" name="cv" accept=".pdf,.doc,.docx">
+                                @error('cv')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    Simpan
+                                </button>
+                                <a href="{{ route('pegawai.index') }}" class="btn btn-secondary">
+                                    Kembali
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-
-        <div class="column">
-            <div class="form-group col-md-11">
-                <strong>Wawancara:</strong>
-                <textarea name="wawancara" class="form-control" rows="3" placeholder="Catatan hasil wawancara"></textarea>
-            </div>
-            <div class="form-group col-md-11">
-                <strong>Sertifikasi Pendukung:</strong>
-                <textarea name="sertifikasi_pendukung" class="form-control" rows="3" placeholder="Contoh: Sertifikat Google, TOEFL, dll"></textarea>
-            </div>
-            <div class="form-group col-md-11">
-                <strong>Kemampuan:</strong>
-                <textarea name="kemampuan" class="form-control" rows="3" placeholder="Contoh: PHP, Laravel, Public Speaking"></textarea>
-            </div>
-            <div class="form-group col-md-11">
-                <strong>Upload CV (PDF/DOC/DOCX):</strong>
-                <input type="file" name="cv" class="form-control">
-            </div>
-        </div>
     </div>
-</form>
-
+</div>
 @endsection

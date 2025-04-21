@@ -1,70 +1,119 @@
 @extends('adminlte::page')
 
-@section('title', 'Edit Data Pegawai')
+@section('title', 'Manajemen Pegawai')
 
 @section('content_header')
-    <h2>Edit Data Pegawai</h2>
-@stop
-
-@section('content')
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-lg-10">
-            <form action="{{ route('pegawai.update', $pegawai->id) }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                @method('PUT')
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Edit Pegawai</div>
 
-                <div class="mb-3">
-                    <label for="no_peserta" class="form-label">No Peserta</label>
-                    <input type="text" name="no_peserta" class="form-control" value="{{ $pegawai->no_peserta }}" required>
+                <div class="card-body">
+                    <form method="POST" action="{{ route('pegawai.update', $pegawai->id) }}" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
+
+                        <div class="form-group row mb-3">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Nama</label>
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name', $pegawai->name) }}" required autocomplete="name" autofocus>
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-3">
+                            <label for="bagian_dilamar" class="col-md-4 col-form-label text-md-right">Bagian Yang Dilamar</label>
+                            <div class="col-md-6">
+                                <input id="bagian_dilamar" type="text" class="form-control @error('bagian_dilamar') is-invalid @enderror" name="bagian_dilamar" value="{{ old('bagian_dilamar', $pegawai->bagian_dilamar) }}" required>
+                                @error('bagian_dilamar')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-3">
+                            <label for="pendidikan" class="col-md-4 col-form-label text-md-right">Pendidikan</label>
+                            <div class="col-md-6">
+                                <textarea id="pendidikan" class="form-control @error('pendidikan') is-invalid @enderror" name="pendidikan">{{ old('pendidikan', $pegawai->pendidikan) }}</textarea>
+                                @error('pendidikan')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-3">
+                            <label for="pengalaman_kerja" class="col-md-4 col-form-label text-md-right">Pengalaman Kerja</label>
+                            <div class="col-md-6">
+                                <textarea id="pengalaman_kerja" class="form-control @error('pengalaman_kerja') is-invalid @enderror" name="pengalaman_kerja">{{ old('pengalaman_kerja', $pegawai->pengalaman_kerja) }}</textarea>
+                                @error('pengalaman_kerja')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-3">
+                            <label for="sertifikasi_pendukung" class="col-md-4 col-form-label text-md-right">Sertifikasi Pendukung</label>
+                            <div class="col-md-6">
+                                <textarea id="sertifikasi_pendukung" class="form-control @error('sertifikasi_pendukung') is-invalid @enderror" name="sertifikasi_pendukung">{{ old('sertifikasi_pendukung', $pegawai->sertifikasi_pendukung) }}</textarea>
+                                @error('sertifikasi_pendukung')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-3">
+                            <label for="kemampuan" class="col-md-4 col-form-label text-md-right">Kemampuan</label>
+                            <div class="col-md-6">
+                                <textarea id="kemampuan" class="form-control @error('kemampuan') is-invalid @enderror" name="kemampuan">{{ old('kemampuan', $pegawai->kemampuan) }}</textarea>
+                                @error('kemampuan')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-3">
+                            <label for="cv" class="col-md-4 col-form-label text-md-right">CV (PDF/DOC/DOCX)</label>
+                            <div class="col-md-6">
+                                <input id="cv" type="file" class="form-control @error('cv') is-invalid @enderror" name="cv" accept=".pdf,.doc,.docx">
+                                @if($pegawai->cv)
+                                    <small class="form-text text-muted">File CV sebelumnya: {{ $pegawai->cv }}</small>
+                                @endif
+                                @error('cv')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    Perbarui
+                                </button>
+                                <a href="{{ route('pegawai.index') }}" class="btn btn-secondary">
+                                    Kembali
+                                </a>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-
-                <div class="mb-3">
-                    <label for="name" class="form-label">Nama</label>
-                    <input type="text" name="name" class="form-control" value="{{ $pegawai->name }}" required>
-                </div>
-
-                <div class="mb-3">
-                    <label for="bagian_dilamar" class="form-label">Bagian Dilamar</label>
-                    <input type="text" name="bagian_dilamar" class="form-control" value="{{ $pegawai->bagian_dilamar }}" required>
-                </div>
-
-                <div class="mb-3">
-                    <label for="pendidikan" class="form-label">Pendidikan</label>
-                    <textarea name="pendidikan" class="form-control">{{ $pegawai->pendidikan }}</textarea>
-                </div>
-
-                <div class="mb-3">
-                    <label for="pengalaman_kerja" class="form-label">Pengalaman Kerja</label>
-                    <textarea name="pengalaman_kerja" class="form-control">{{ $pegawai->pengalaman_kerja }}</textarea>
-                </div>
-
-                <div class="mb-3">
-                    <label for="wawancara" class="form-label">Hasil Wawancara</label>
-                    <textarea name="wawancara" class="form-control">{{ $pegawai->wawancara }}</textarea>
-                </div>
-
-                <div class="mb-3">
-                    <label for="sertifikasi_pendukung" class="form-label">Sertifikasi Pendukung</label>
-                    <textarea name="sertifikasi_pendukung" class="form-control">{{ $pegawai->sertifikasi_pendukung }}</textarea>
-                </div>
-
-                <div class="mb-3">
-                    <label for="kemampuan" class="form-label">Kemampuan</label>
-                    <textarea name="kemampuan" class="form-control">{{ $pegawai->kemampuan }}</textarea>
-                </div>
-
-                <div class="mb-3">
-                    <label for="cv" class="form-label">CV (PDF/DOC/DOCX, max 2MB)</label>
-                    @if ($pegawai->cv)
-                        <p>CV saat ini: <a href="{{ asset('storage/cv/' . $pegawai->cv) }}" target="_blank">{{ $pegawai->cv }}</a></p>
-                    @endif
-                    <input type="file" name="cv" class="form-control" accept=".pdf,.doc,.docx">
-                </div>
-
-                <a href="{{ route('pegawai.index') }}" class="btn btn-secondary">Kembali</a>
-                <button type="submit" class="btn btn-primary">Update Data</button>
-            </form>
+            </div>
         </div>
     </div>
 </div>

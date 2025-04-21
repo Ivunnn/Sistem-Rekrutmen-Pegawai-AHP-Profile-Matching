@@ -10,7 +10,6 @@ class Pegawai extends Model
     use HasFactory;
 
     protected $fillable = [
-        'no_peserta',
         'name',
         'tanggal',
         'jabatan',
@@ -18,7 +17,6 @@ class Pegawai extends Model
         'bagian_dilamar',
         'pendidikan',
         'pengalaman_kerja',
-        'wawancara',
         'sertifikasi_pendukung',
         'kemampuan',
         'cv'

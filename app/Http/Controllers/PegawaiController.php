@@ -21,24 +21,20 @@ class PegawaiController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'no_peserta' => 'required|unique:pegawais',
             'name' => 'required',
             'bagian_dilamar' => 'required|string|max:255',
             'pendidikan' => 'nullable|string',
             'pengalaman_kerja' => 'nullable|string',
-            'wawancara' => 'nullable|string',
             'sertifikasi_pendukung' => 'nullable|string',
             'kemampuan' => 'nullable|string',
             'cv' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
         ]);
 
         $data = $request->only([
-            'no_peserta',
             'name',
             'bagian_dilamar',
             'pendidikan',
             'pengalaman_kerja',
-            'wawancara',
             'sertifikasi_pendukung',
             'kemampuan',
         ]);
@@ -68,24 +64,20 @@ class PegawaiController extends Controller
     public function update(Request $request, Pegawai $pegawai)
     {
         $request->validate([
-            'no_peserta' => 'required|unique:pegawais,no_peserta,' . $pegawai->id,
             'name' => 'required|string|max:255',
             'bagian_dilamar' => 'required|string|max:255',
             'pendidikan' => 'nullable|string',
             'pengalaman_kerja' => 'nullable|string',
-            'wawancara' => 'nullable|string',
             'sertifikasi_pendukung' => 'nullable|string',
             'kemampuan' => 'nullable|string',
             'cv' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
         ]);
 
         $data = $request->only([
-            'no_peserta',
             'name',
             'bagian_dilamar',
             'pendidikan',
             'pengalaman_kerja',
-            'wawancara',
             'sertifikasi_pendukung',
             'kemampuan',
         ]);
