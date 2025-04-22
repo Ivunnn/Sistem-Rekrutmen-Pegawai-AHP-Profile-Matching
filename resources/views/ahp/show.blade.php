@@ -8,7 +8,7 @@
     <h1>AHP Calculation Details</h1>
   </div>
   <div class="col-sm-6">
-    <a class="btn btn-secondary float-right" href="{{ route('user.bobot.ahp.index') }}">Back</a>
+    <a class="btn btn-secondary float-right" href="{{ route('ahp.index') }}">Back</a>
   </div>
 </div>
 @stop

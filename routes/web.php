@@ -14,6 +14,8 @@ use App\Http\Controllers\RekomendasiController;
 use App\Http\Controllers\AHPController;
 use App\Http\Controllers\UserMetodePembobotanController;
 use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\NilaiAktualController;
+use App\Http\Controllers\NilaiIdealController;
   
 /*
 |--------------------------------------------------------------------------
@@ -61,6 +63,12 @@ Route::resource('kriteria', KriteriaController::class)->parameters([
 
 Route::resource('nilai-ideal', \App\Http\Controllers\NilaiIdealController::class);
 Route::resource('pegawai', PegawaiController::class);
+
+Route::get('/nilai-aktual', [NilaiAktualController::class, 'index'])->name('nilai-aktual.index');
+Route::get('/nilai-aktual/{pegawai}/edit', [NilaiAktualController::class, 'edit'])->name('nilai-aktual.edit');
+Route::get('/nilai-aktual/{pegawai}', [NilaiAktualController::class, 'show'])->name('nilai-aktual.show');
+Route::post('/nilai-aktual/{pegawai}', [NilaiAktualController::class, 'update'])->name('nilai-aktual.update');
+
 
 Route::group(['middleware' => ['auth']], function() {
 

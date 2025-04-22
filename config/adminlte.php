@@ -318,7 +318,7 @@ return [
 
         [
             'text' => 'Manajemen Aktual',
-            'url'  => '',
+            'url'  => 'nilai-aktual',
             'icon' => 'fas fa-fw fa-bullseye',
             'can'  => 'admin',
             'icon_color' => '',
