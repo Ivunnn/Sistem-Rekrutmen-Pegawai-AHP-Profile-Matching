@@ -16,6 +16,7 @@ use App\Http\Controllers\UserMetodePembobotanController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\NilaiAktualController;
 use App\Http\Controllers\NilaiIdealController;
+use App\Http\Controllers\ProfileMatchingController;
   
 /*
 |--------------------------------------------------------------------------
@@ -38,7 +39,14 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-  
+
+Route::get('/profile-matching/calculate', [ProfileMatchingController::class, 'calculate'])->name('profile-matching.calculate');
+Route::get('/profile-matching/report', [ProfileMatchingController::class, 'report'])->name('profile-matching.report');
+Route::get('/profile-matching/pdf', [ProfileMatchingController::class, 'exportPdf'])->name('profile-matching.pdf');
+Route::get('profile-matching/report', [ProfileMatchingController::class, 'report'])->name('profile-matching.report');
+Route::get('profile-matching/download-pdf', [ProfileMatchingController::class, 'downloadPdf'])->name('profile-matching.download-pdf');
+
+
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/ahp/hitung', [AHPController::class, 'hitungAHP'])->name('ahp.calculate');

@@ -301,8 +301,8 @@ return [
             'can'  => 'user',
         ],
         [
-            'text' => 'Pembobotan langsung',
-            'url'  => 'user/bobot/langsung',
+            'text' => 'Profile Matching',
+            'url'  => 'profile_matching/report',
             'icon' => 'fas fa-fw fa-balance-scale',
             'can'  => 'user',
             'icon_color' => '',

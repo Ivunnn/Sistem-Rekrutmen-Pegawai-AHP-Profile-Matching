@@ -18,5 +18,10 @@ class Pegawai extends Model
         'kemampuan',
         'cv'
     ];
-    
+
+    public function nilaiAktual()
+    {
+        return $this->hasMany(NilaiAktual::class);
+    }
+
 }

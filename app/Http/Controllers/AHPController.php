@@ -48,7 +48,7 @@ class AHPController extends Controller
         // Get all criteria
         $kriterias = Kriteria::all();
         $count = $kriterias->count();
-        
+
         // Extract matrix from form
         $matrix = [];
         for ($i = 1; $i <= $count; $i++) {
@@ -69,13 +69,13 @@ class AHPController extends Controller
 
         // Perform AHP calculation
         $result = $this->calculateAHP($matrix, $count);
-        
+
         // Prepare weights for each criteria
         $criteriaWeights = array_combine(
             $kriterias->pluck('id')->toArray(),
             $result['priority_vector']
         );
-        
+
         DB::beginTransaction();
         try {
             // Create AHP calculation record
@@ -185,10 +185,10 @@ class AHPController extends Controller
     {
         $calculation = AHPCalculation::findOrFail($id);
         $kriterias = Kriteria::all();
-        
+
         // Decode matrix data
         $matrixData = json_decode($calculation->matrix_data, true);
-        
+
         return view('ahp.show', compact('calculation', 'kriterias', 'matrixData'));
     }
 
@@ -202,7 +202,7 @@ class AHPController extends Controller
     {
         $calculation = AHPCalculation::findOrFail($id);
         $calculation->delete();
-        
+
         return redirect()->route('ahp.index')
             ->with('success', 'AHP calculation deleted successfully');
     }
