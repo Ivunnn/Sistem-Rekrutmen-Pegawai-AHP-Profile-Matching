@@ -82,24 +82,6 @@ class RegisterController extends Controller
 
         $newUser->assignRole(['User']);
         
-        $init_bobot_langsung = BobotLangsung::create(
-            [
-                'id_user'   => $newUser->id,
-                'c1'        => 1,
-                'c2'        => 1,
-                'c3'        => 1,
-                'c4'        => 1,
-                'c5'        => 1,
-                'c6'        => 1,
-                'c7'        => 1,
-                'c8'        => 1,
-                'c9'        => 1,
-                'c10'       => 1,
-                'c11'       => 1,
-                'c12'       => 1,
-            ]
-        );
-
         return $newUser;
     }
 }
