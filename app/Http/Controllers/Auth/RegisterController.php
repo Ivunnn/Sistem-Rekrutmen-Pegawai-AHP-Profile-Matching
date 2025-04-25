@@ -73,15 +73,22 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-
         $newUser = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
 
-        $newUser->assignRole(['User']);
-        
+        $newUser->assignRole(['user']);
+
+        // Create initial Pegawai record for the user
+        Pegawai::create([
+            'name' => $data['name'],
+            'user_id' => $newUser->id, // Add this relationship
+            // Set other fields to default values if needed
+            'bagian_dilamar' => 'Belum ditentukan',
+        ]);
+
         return $newUser;
     }
 }

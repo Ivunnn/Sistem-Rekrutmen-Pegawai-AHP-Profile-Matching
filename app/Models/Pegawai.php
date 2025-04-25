@@ -11,6 +11,7 @@ class Pegawai extends Model
 
     protected $fillable = [
         'name',
+        'user_id', // Add this
         'bagian_dilamar',
         'pendidikan',
         'pengalaman_kerja',
@@ -23,5 +24,9 @@ class Pegawai extends Model
     {
         return $this->hasMany(NilaiAktual::class);
     }
-
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

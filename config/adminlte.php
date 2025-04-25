@@ -230,11 +230,16 @@ return [
             'search' => false,
             'topnav' => false,
         ],
-        // [
-        //     'text' => 'blog',
-        //     'url'  => 'admin/blog',
-        //     'can'  => 'user',
-        // ],
+
+         [
+            'header' => 'User',
+            'can'  => 'user',
+        ],
+        [
+            'text' => 'Input Berkas',
+            'url'  => 'my-application',
+            'can'  => 'user',
+        ],
         // [
         //     'text'        => 'pages',
         //     'url'         => 'admin/pages',
@@ -242,10 +247,7 @@ return [
         //     'label'       => 4,
         //     'label_color' => 'success',
         // ],
-        // [
-        //     'header' => 'MAIN APP',
-        //     'can'  => 'user',
-        // ],
+       
         // [
         //     'text' => 'Cari Laptop',
         //     'url'  => 'laptop/search',
@@ -280,13 +282,13 @@ return [
         // metode pembobotan
         [
             'header' => 'METODE AHP',
-            'can'  => 'user',
+            'can'  => 'admin',
         ],
         [
             'text' => 'Pembobotan AHP',
             'url'  => 'ahp',
             'icon' => 'fas fa-fw fa-balance-scale',
-            'can'  => 'user',
+            'can'  => 'admin',
             'icon_color' => '',
         ],
         [
@@ -298,13 +300,13 @@ return [
         ],
         [
             'header' => 'METODE Profile Matching',
-            'can'  => 'user',
+            'can'  => 'admin',
         ],
         [
             'text' => 'Profile Matching',
             'url'  => 'profile-matching/report',
             'icon' => 'fas fa-fw fa-balance-scale',
-            'can'  => 'user',
+            'can'  => 'admin',
             'icon_color' => '',
         ],
         

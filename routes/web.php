@@ -1,7 +1,7 @@
 <?php
-  
+
 use Illuminate\Support\Facades\Route;
-  
+
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -11,13 +11,15 @@ use App\Http\Controllers\PresetPreferenceController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\RekomendasiController;
+use App\Http\Controllers\BerkasController;
 use App\Http\Controllers\AHPController;
 use App\Http\Controllers\UserMetodePembobotanController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\NilaiAktualController;
 use App\Http\Controllers\NilaiIdealController;
+use App\Http\Controllers\KandidatController;
 use App\Http\Controllers\ProfileMatchingController;
-  
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,11 +42,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/profile-matching/calculate', [ProfileMatchingController::class, 'calculate'])->name('profile-matching.calculate');
-Route::get('/profile-matching/report', [ProfileMatchingController::class, 'report'])->name('profile-matching.report');
-Route::get('/profile-matching/pdf', [ProfileMatchingController::class, 'exportPdf'])->name('profile-matching.pdf');
-Route::get('profile-matching/report', [ProfileMatchingController::class, 'report'])->name('profile-matching.report');
-Route::get('profile-matching/download-pdf', [ProfileMatchingController::class, 'downloadPdf'])->name('profile-matching.download-pdf');
 
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -70,7 +67,7 @@ Route::resource('kriteria', KriteriaController::class)->parameters([
 // Route::put('/kriteria/{kriteria}', [KriteriaController::class, 'update'])->name('kriteria.update');
 
 Route::resource('nilai-ideal', \App\Http\Controllers\NilaiIdealController::class);
-Route::resource('pegawai', PegawaiController::class);
+
 
 Route::get('/nilai-aktual', [NilaiAktualController::class, 'index'])->name('nilai-aktual.index');
 Route::get('/nilai-aktual/{pegawai}/edit', [NilaiAktualController::class, 'edit'])->name('nilai-aktual.edit');
@@ -78,14 +75,16 @@ Route::get('/nilai-aktual/{pegawai}', [NilaiAktualController::class, 'show'])->n
 Route::post('/nilai-aktual/{pegawai}', [NilaiAktualController::class, 'update'])->name('nilai-aktual.update');
 
 
-Route::group(['middleware' => ['auth']], function() {
+Route::group(['middleware' => ['auth']], function () {
 
-    Route::group(['middleware' => ['role:User|Admin']], function () {
+    Route::group(['middleware' => ['role:Admin']], function () {
         Route::resource('roles', RoleController::class);
         Route::resource('users', UserController::class);
         Route::resource('products', ProductController::class);
         Route::resource('presetpreferences', PresetPreferenceController::class);
-        
+
+        Route::resource('pegawai', PegawaiController::class);
+
         Route::resource('ahp', AHPController::class, [
             'only' => ['index', 'create', 'store']
         ]);
@@ -94,6 +93,13 @@ Route::group(['middleware' => ['auth']], function() {
         Route::post('/ahp/{ahp}', [AHPController::class, 'update'])->name('ahp.update');
         Route::post('/ahp/t/{ahp}', [AHPController::class, 'toggle'])->name('ahp.toggle');
         Route::delete('/ahp/{ahp}', [AHPController::class, 'destroy'])->name('ahp.destroy');
+
+        Route::get('/profile-matching/calculate', [ProfileMatchingController::class, 'calculate'])->name('profile-matching.calculate');
+        Route::get('/profile-matching/report', [ProfileMatchingController::class, 'report'])->name('profile-matching.report');
+        Route::get('/profile-matching/pdf', [ProfileMatchingController::class, 'exportPdf'])->name('profile-matching.pdf');
+        Route::get('profile-matching/report', [ProfileMatchingController::class, 'report'])->name('profile-matching.report');
+        Route::get('profile-matching/download-pdf', [ProfileMatchingController::class, 'downloadPdf'])->name('profile-matching.download-pdf');
+
 
         // Verb          Path                        Action  Route Name
         // GET           /users                      index   users.index
@@ -105,6 +111,24 @@ Route::group(['middleware' => ['auth']], function() {
         // DELETE        /users/{user}               destroy users.destroy
 
     });
+    // -----------------
+    // metode pembobotan
+    // -----------------
+    // Pembobotan AHP
+    Route::get('user/bobot/ahp', [UserMetodePembobotanController::class, 'ahp_index'])->name('user.bobot.ahp.index');
+    Route::get('user/bobot/ahp/create', [UserMetodePembobotanController::class, 'ahp_create'])->name('user.bobot.ahp.create');
+    Route::post('user/bobot/ahp', [UserMetodePembobotanController::class, 'ahp_store'])->name('user.bobot.ahp.store');
+    Route::get('user/bobot/ahp/{ahp}', [UserMetodePembobotanController::class, 'ahp_show'])->name('user.bobot.ahp.show');
+    Route::get('user/bobot/ahp/{ahp}/edit', [UserMetodePembobotanController::class, 'ahp_edit'])->name('user.bobot.ahp.edit');
+    Route::post('user/bobot/ahp/{ahp}', [UserMetodePembobotanController::class, 'ahp_update'])->name('user.bobot.ahp.update');
+    Route::post('user/bobot/ahp/t/{ahp}', [UserMetodePembobotanController::class, 'ahp_toggle'])->name('user.bobot.ahp.toggle');
+    Route::delete('user/bobot/ahp/{ahp}', [UserMetodePembobotanController::class, 'ahp_destroy'])->name('user.bobot.ahp.destroy');
+
+
+    // Pembobotan Langsung
+    Route::get('user/bobot/langsung', [UserMetodePembobotanController::class, 'langsung_index'])->name('user.bobot.langsung.index');
+    Route::get('user/bobot/langsung/edit', [UserMetodePembobotanController::class, 'langsung_edit'])->name('user.bobot.langsung.edit');
+    Route::post('user/bobot/langsung/edit', [UserMetodePembobotanController::class, 'langsung_update'])->name('user.bobot.langsung.update');
 
     Route::group(['middleware' => ['role:User|Admin']], function () {
         Route::get('/myprofile', [UserController::class, 'myProfile'])->name('myprofile.index');
@@ -113,45 +137,17 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('/myprofile/password', [UserController::class, 'getPassword'])->name('myprofile.changePassword.index');
         Route::post('/myprofile/change_password', [UserController::class, 'postPassword'])->name('myprofile.userPostPassword');
 
-        Route::resource('laptop/myfavorites', FavoriteController::class, [
-            // 'except' => ['edit', 'create', 'update']
-            'only' => ['index', 'store', 'show', 'destroy']
-        ]);
+        Route::get('/berkas', [BerkasController::class, 'index'])->name('berkas.index');
+        Route::get('/berkas/create', [BerkasController::class, 'create'])->name('berkas.create');
+        Route::post('/berkas', [BerkasController::class, 'store'])->name('berkas.store');
+        // Berkas Pelamar
+        Route::get('/berkas-pelamar', [PegawaiController::class, 'berkasIndex'])->name('berkas.index');
+        Route::get('/berkas-pelamar/create', [PegawaiController::class, 'berkasCreate'])->name('berkas.create');
+        Route::post('/berkas-pelamar/store', [PegawaiController::class, 'berkasStore'])->name('berkas.store');
 
-        Route::resource('laptop/search', SearchController::class, [
-            // 'except' => ['edit', 'create', 'update']
-            'only' => ['index', 'store', 'show', 'destroy']
-        ]);
-
-        Route::resource('laptop/rekomendasi', RekomendasiController::class, [
-            // 'except' => ['edit', 'create', 'update', 'show']
-            'only' => ['index', 'store', 'destroy']
-        ]);
-        Route::get('laptop/rekomendasi/usepreset/{presetpreference}', [RekomendasiController::class, 'index'])->name('rekomendasi.preset.use');
-        Route::get('laptop/rekomendasi/hasil', [RekomendasiController::class, 'hasil_index'])->name('rekomendasi.hasil.index');
-        Route::post('laptop/rekomendasi/hasil', [RekomendasiController::class, 'hasil'])->name('rekomendasi.hasil');
-        Route::get('laptop/rekomendasi/hasil/{laptop}', [RekomendasiController::class, 'product_detail'])->name('rekomendasi.hasil.product.detail');
-        Route::get('laptop/rekomendasi/preset', [RekomendasiController::class, 'list'])->name('rekomendasi.list_preset');
-        Route::get('laptop/rekomendasi/preset/{presetpreference}', [RekomendasiController::class, 'presetDetail'])->name('rekomendasi.preset.show');
-
-        // -----------------
-        // metode pembobotan
-        // -----------------
-        // Pembobotan AHP
-        Route::get('user/bobot/ahp', [UserMetodePembobotanController::class, 'ahp_index'])->name('user.bobot.ahp.index');
-        Route::get('user/bobot/ahp/create', [UserMetodePembobotanController::class, 'ahp_create'])->name('user.bobot.ahp.create');
-        Route::post('user/bobot/ahp', [UserMetodePembobotanController::class, 'ahp_store'])->name('user.bobot.ahp.store');
-        Route::get('user/bobot/ahp/{ahp}', [UserMetodePembobotanController::class, 'ahp_show'])->name('user.bobot.ahp.show');
-        Route::get('user/bobot/ahp/{ahp}/edit', [UserMetodePembobotanController::class, 'ahp_edit'])->name('user.bobot.ahp.edit');
-        Route::post('user/bobot/ahp/{ahp}', [UserMetodePembobotanController::class, 'ahp_update'])->name('user.bobot.ahp.update');
-        Route::post('user/bobot/ahp/t/{ahp}', [UserMetodePembobotanController::class, 'ahp_toggle'])->name('user.bobot.ahp.toggle');
-        Route::delete('user/bobot/ahp/{ahp}', [UserMetodePembobotanController::class, 'ahp_destroy'])->name('user.bobot.ahp.destroy');
-
-
-        // Pembobotan Langsung
-        Route::get('user/bobot/langsung', [UserMetodePembobotanController::class, 'langsung_index'])->name('user.bobot.langsung.index');
-        Route::get('user/bobot/langsung/edit', [UserMetodePembobotanController::class, 'langsung_edit'])->name('user.bobot.langsung.edit');
-        Route::post('user/bobot/langsung/edit', [UserMetodePembobotanController::class, 'langsung_update'])->name('user.bobot.langsung.update');
+        Route::get('/my-application', [App\Http\Controllers\PegawaiController::class, 'myApplication'])->name('pegawai.my-application');
+        Route::get('/my-application/edit', [App\Http\Controllers\PegawaiController::class, 'editMyApplication'])->name('pegawai.edit-my-application');
+        Route::put('/my-application', [App\Http\Controllers\PegawaiController::class, 'updateMyApplication'])->name('pegawai.update-my-application');
 
         // Route::resource('user/bobot/ahp', SearchController::class, [
         //     // 'except' => ['edit', 'create', 'update']
@@ -160,10 +156,12 @@ Route::group(['middleware' => ['auth']], function() {
         // Route::resource('user/bobot/langsung', SearchController::class, [
         //     // 'except' => ['create', 'update', 'show', 'destroy']
         //     'only' => ['index', 'store', 'edit']
-        // ]);
-        
+        // ]);        
     });
-    
+
+    Route::group(['middleware' => ['role:User']], function () {
+
+    });
 
 });
 
