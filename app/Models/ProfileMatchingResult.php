@@ -7,7 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProfileMatchingResult extends Model
 {
-    protected $fillable = ['pegawai_id', 'total_score'];
+    use HasFactory;
+    
+    protected $fillable = [
+        'pegawai_id', 
+        'total_score', 
+        'cf_score', 
+        'sf_score', 
+        'detail_results'
+    ];
 
     public function pegawai()
     {

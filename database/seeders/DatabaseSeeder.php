@@ -18,8 +18,6 @@ class DatabaseSeeder extends Seeder
             PermissionTableSeeder::class,
             CreateAdminUserSeeder::class,
             UserSeeder::class,
-            LaptopSeeder::class,
-            PresetPreferenceSeeder::class,
             AHPSeeder::class,
         ]);
     }

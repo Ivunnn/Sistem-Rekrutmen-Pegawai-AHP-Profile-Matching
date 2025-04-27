@@ -304,7 +304,7 @@ return [
         ],
         [
             'text' => 'Profile Matching',
-            'url'  => 'profile-matching/report',
+            'url'  => 'profile-matching',
             'icon' => 'fas fa-fw fa-balance-scale',
             'can'  => 'admin',
             'icon_color' => '',
@@ -342,13 +342,13 @@ return [
             'icon' => 'fas fa-fw fa-lock',
             'can'  => 'user',
         ],
-        [
-            'text' => 'My Favorite',
-            'url'  => 'laptop/myfavorites',
-            'icon' => 'fas fa-fw fa-star',
-            'can'  => 'user',
-            'icon_color' => '',
-        ],
+        // [
+        //     'text' => 'My Favorite',
+        //     'url'  => 'laptop/myfavorites',
+        //     'icon' => 'fas fa-fw fa-star',
+        //     'can'  => 'user',
+        //     'icon_color' => '',
+        // ],
 
         // admin previlage
         [

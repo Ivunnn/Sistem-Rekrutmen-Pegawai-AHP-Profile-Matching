@@ -13,12 +13,14 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\RekomendasiController;
 use App\Http\Controllers\BerkasController;
 use App\Http\Controllers\AHPController;
+use App\Http\Controllers\GapBobotController;
+use App\Http\Controllers\ProfileMatchingController;
 use App\Http\Controllers\UserMetodePembobotanController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\NilaiAktualController;
 use App\Http\Controllers\NilaiIdealController;
 use App\Http\Controllers\KandidatController;
-use App\Http\Controllers\ProfileMatchingController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -94,6 +96,14 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/ahp/t/{ahp}', [AHPController::class, 'toggle'])->name('ahp.toggle');
         Route::delete('/ahp/{ahp}', [AHPController::class, 'destroy'])->name('ahp.destroy');
 
+        // Profile Matching Routes
+        Route::get('/profile-matching', [ProfileMatchingController::class, 'index'])->name('profile-matching.index');
+        Route::get('/profile-matching/{id}', [ProfileMatchingController::class, 'show'])->name('profile-matching.show');
+        Route::get('/profile-matching-pdf', [ProfileMatchingController::class, 'generatePdf'])->name('profile-matching.pdf');
+
+        // Gap Bobot Routes (optional, for managing gap weight conversion)
+        Route::resource('gap-bobot', GapBobotController::class);
+
         Route::get('/profile-matching/calculate', [ProfileMatchingController::class, 'calculate'])->name('profile-matching.calculate');
         Route::get('/profile-matching/report', [ProfileMatchingController::class, 'report'])->name('profile-matching.report');
         Route::get('/profile-matching/pdf', [ProfileMatchingController::class, 'exportPdf'])->name('profile-matching.pdf');
@@ -124,6 +134,15 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('user/bobot/ahp/t/{ahp}', [UserMetodePembobotanController::class, 'ahp_toggle'])->name('user.bobot.ahp.toggle');
     Route::delete('user/bobot/ahp/{ahp}', [UserMetodePembobotanController::class, 'ahp_destroy'])->name('user.bobot.ahp.destroy');
 
+    // Profile Matching Routes
+    Route::get('/profile-matching/report', [App\Http\Controllers\ProfileMatchingController::class, 'report'])
+        ->name('profile-matching.report');
+    Route::get('/profile-matching/calculate', [App\Http\Controllers\ProfileMatchingController::class, 'calculate'])
+        ->name('profile-matching.calculate');
+    Route::get('/profile-matching/export-pdf', [App\Http\Controllers\ProfileMatchingController::class, 'exportPdf'])
+        ->name('profile-matching.export-pdf');
+    Route::get('/profile-matching/detail/{pegawai_id}', [App\Http\Controllers\ProfileMatchingController::class, 'showDetail'])
+        ->name('profile-matching.detail');
 
     // Pembobotan Langsung
     Route::get('user/bobot/langsung', [UserMetodePembobotanController::class, 'langsung_index'])->name('user.bobot.langsung.index');
