@@ -40,7 +40,7 @@
                                 <th>CV</th>
                                 <td>
                                     @if($pegawai->cv)
-                                        <a href="{{ asset('storage/cv/' . $pegawai->cv) }}" target="_blank" class="btn btn-sm btn-info">Lihat CV</a>
+                                    <a href="{{ asset('storage/cv/' . $pegawai->cv) }}" target="_blank" class="btn btn-sm btn-info">Lihat CV</a>
                                     @else
                                         Tidak ada CV
                                     @endif
