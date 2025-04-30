@@ -99,7 +99,7 @@ Route::group(['middleware' => ['auth']], function () {
         // Profile Matching Routes
         Route::get('/profile-matching', [ProfileMatchingController::class, 'index'])->name('profile-matching.index');
         Route::get('/profile-matching/{id}', [ProfileMatchingController::class, 'show'])->name('profile-matching.show');
-        Route::get('/profile-matching-pdf', [ProfileMatchingController::class, 'generatePdf'])->name('profile-matching.pdf');
+        Route::get('/profile-matching-pdf', [ProfileMatchingController::class, 'generatePdf'])->name('profile-matching-pdf');
 
         // Gap Bobot Routes (optional, for managing gap weight conversion)
         Route::resource('gap-bobot', GapBobotController::class);

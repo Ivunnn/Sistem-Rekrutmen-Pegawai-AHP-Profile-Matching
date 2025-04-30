@@ -4,7 +4,6 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
   <title>PT Mutiara Putri Gemilang</title>
 
   {{--
@@ -58,10 +57,12 @@
   </section><!-- End Hero -->
 
   <section class="Contact Us">
-    <div class="container-fluid d-flex flex-column flex-lg-row justify-content-around align-items-start px-5">
-      <div class="col-12 col-lg-6 px-5">
-        <h2><b>HUBUNGI KAMI</b></h2>
-        <div class="d-flex flex-column">
+    <div class="container py-5">
+      <div class="row justify-content-center">
+        <!-- Formulir Kontak -->
+        <div class="col-12 col-lg-6 mb-4">
+          <h2><b>HUBUNGI KAMI</b></h2>
+
           {{-- Notifikasi sukses --}}
           @if(session('success'))
         <div class="alert alert-success mt-3">
@@ -82,25 +83,31 @@
 
           <form action="{{ route('contact.submit') }}" method="POST">
             @csrf
-            <label for="">Nama</label>
-            <input type="text" name="name" class="form-control">
+            <div class="form-group">
+              <label>Nama</label>
+              <input type="text" name="name" class="form-control" required>
+            </div>
 
-            <label for="">E-mail</label>
-            <input type="email" name="email" class="form-control">
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" name="email" class="form-control" required>
+            </div>
 
-            <label for="">Pesan</label>
-            <textarea name="message" class="form-control"></textarea>
+            <div class="form-group">
+              <label>Pesan</label>
+              <textarea name="message" class="form-control" rows="4" required></textarea>
+            </div>
 
-            <button type="submit" class="btn btn-primary my-3">Kirim</button>
+            <button type="submit" class="btn btn-primary my-3 w-100">Kirim</button>
           </form>
-
         </div>
-      </div>
 
-      <div class="col-12 col-lg-6 px-4 mt-4 mt-lg-0 d-flex flex-column align-items-center">
-        <div id="map" class="w-75" style="height: 300px; border-radius: 20px;"></div>
-        <a href="https://www.google.com/maps/place/Jl.+Merdeka,+Gondek,+Kec.+Mojowarno,+Kabupaten+Jombang,+Jawa+Timur/@-7.6222691,112.2788456,283m/data=!3m1!1e3!4m6!3m5!1s0x2e786985cf8d211b:0xc44807a69f9372f8!8m2!3d-7.6220162!4d112.2793898!16s%2Fg%2F11fls24wq6?entry=ttu&g_ep=EgoyMDI1MDIxOS4xIKXMDSoASAFQAw%3D%3D"
-          class="my-3" target="_blank">Buka di Google Maps</a>
+        <!-- Peta -->
+        <div class="col-12 col-lg-6 d-flex flex-column justify-content-center align-items-center">
+          <div id="map" class="w-100" style="height: 300px; border-radius: 20px;"></div>
+          <a href="https://www.google.com/maps/place/Jl.+Merdeka,+Gondek,+Kec.+Mojowarno,+Kabupaten+Jombang,+Jawa+Timur/@-7.6222691,112.2788456,283m/data=!3m1!1e3!4m6!3m5!1s0x2e786985cf8d211b:0xc44807a69f9372f8!8m2!3d-7.6220162!4d112.2793898!16s%2Fg%2F11fls24wq6?entry=ttu"
+            class="btn btn-outline-primary mt-5" target="_blank">Buka di Google Maps</a>
+        </div>
       </div>
     </div>
   </section>
@@ -146,31 +153,29 @@
     <script src="{{ asset('landingpage/assets/js/main.js') }}"></script>
     <!-- ======= Footer ======= -->
     <footer style="background-color: #292B78; color: white; padding: 30px 0;">
-      <div
-        class="container d-flex flex-column flex-lg-row justify-content-between align-items-center text-center text-lg-start">
+      <div class="container">
+        <div class="row text-center text-lg-start">
+          <!-- Logo -->
+          <div class="col-12 col-lg-4 mb-4">
+            <img src="{{ asset('landingpage/assets/img/logo-ptmpg-putih.png') }}" alt="Logo" width="150">
+            <div style="font-weight: bold; margin-top: 10px;">
+              PT. MUTIARA PUTRI GEMILANG<br>
+              <small>PROPERTY REAL ESTATE</small>
+            </div>
+          </div>
 
-        <!-- Logo dan Nama Perusahaan -->
-        <div class="mb-4 mb-lg-0">
-          <img src="{{ asset('landingpage/assets/img/logo-ptmpg-putih.png') }}" alt="Logo PT Mutiara Putri Gemilang"
-            width="150">
-          <div style="font-weight: bold; margin-top: 10px;">
-            PT. MUTIARA PUTRI GEMILANG<br>
-            <small>PROPERTY REAL ESTATE</small>
+          <!-- Copyright -->
+          <div class="col-12 col-lg-4 mb-4 d-flex align-items-center justify-content-center">
+            © 2024 CycleTech. All Rights Reserved.
+          </div>
+
+          <!-- Kontak -->
+          <div class="col-12 col-lg-4">
+            <div>Email : ptmpg@gmail.com</div>
+            <div>+6285755262701</div>
+            <div>Jln. Merdeka Ds. Gondek Kec. Mojowarno, Jombang</div>
           </div>
         </div>
-
-        <!-- Copyright -->
-        <div class="mb-4 mb-lg-0">
-          © 2024 CycleTech. All Rights Reserved.
-        </div>
-
-        <!-- Kontak -->
-        <div>
-          <div>Email : ptmpg@gmail.com</div>
-          <div>+6285755262701</div>
-          <div>Jln. Merdeka Ds. Gondek Kec. Mojowarno, Jombang</div>
-        </div>
-
       </div>
     </footer>
 </body>

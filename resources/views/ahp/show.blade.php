@@ -95,7 +95,7 @@
           <h3 class="card-title">Pairwise Comparison Matrix</h3>
         </div>
         <div class="card-body">
-          <table class="table table-bordered">
+          <table class="table table-bordered table-responsive">
             <thead>
               <tr>
                 <th>Criteria</th>
@@ -118,7 +118,9 @@
         </div>
       </div>
     </div>
+    
   </div>
+  
 </div>
 @stop
 

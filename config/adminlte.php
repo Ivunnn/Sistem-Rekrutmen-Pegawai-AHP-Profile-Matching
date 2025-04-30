@@ -285,13 +285,6 @@ return [
             'can'  => 'admin',
         ],
         [
-            'text' => 'Pembobotan AHP',
-            'url'  => 'ahp',
-            'icon' => 'fas fa-fw fa-balance-scale',
-            'can'  => 'admin',
-            'icon_color' => '',
-        ],
-        [
             'text' => 'Manajemen Kriteria',
             'url'  => 'kriteria',
             'icon' => 'fas fa-fw fa-bullseye',
@@ -299,15 +292,15 @@ return [
             'icon_color' => '',
         ],
         [
-            'header' => 'METODE Profile Matching',
-            'can'  => 'admin',
-        ],
-        [
-            'text' => 'Profile Matching',
-            'url'  => 'profile-matching',
+            'text' => 'Pembobotan AHP',
+            'url'  => 'ahp',
             'icon' => 'fas fa-fw fa-balance-scale',
             'can'  => 'admin',
             'icon_color' => '',
+        ],
+        [
+            'header' => 'METODE Profile Matching',
+            'can'  => 'admin',
         ],
         
         [
@@ -317,11 +310,18 @@ return [
             'can'  => 'admin',
             'icon_color' => '',
         ],
-
+        
         [
-            'text' => 'Manajemen Aktual',
+            'text' => 'Manajemen Nilai Aktual',
             'url'  => 'nilai-aktual',
             'icon' => 'fas fa-fw fa-bullseye',
+            'can'  => 'admin',
+            'icon_color' => '',
+        ],
+        [
+            'text' => 'Profile Matching',
+            'url'  => 'profile-matching',
+            'icon' => 'fas fa-fw fa-balance-scale',
             'can'  => 'admin',
             'icon_color' => '',
         ],
