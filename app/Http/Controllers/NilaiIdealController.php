@@ -22,9 +22,12 @@ class NilaiIdealController extends Controller
     public function store(Request $request)
     {
         foreach ($request->nilai_ideal as $data) {
+            // Add default value for 'nilai' if not present
+            if (!isset($data['nilai'])) {
+                $data['nilai'] = 0; // Set a default value that makes sense for your application
+            }
             NilaiIdeal::create($data);
         }
-
         return redirect()->route('nilai-ideal.index')->with('success', 'Nilai ideal berhasil disimpan.');
     }
 

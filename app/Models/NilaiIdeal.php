@@ -12,6 +12,7 @@ class NilaiIdeal extends Model
         'kriteria_id',
         'nilai_ideal',
         'tipe_faktor',
+        'nilai', // Add this line
     ];
 
     public function kriteria()
