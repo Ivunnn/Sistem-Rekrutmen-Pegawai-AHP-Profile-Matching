@@ -9,8 +9,6 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
 use App\Models\Kriteria;
 
-
-
 class RouteServiceProvider extends ServiceProvider
 {
     /**

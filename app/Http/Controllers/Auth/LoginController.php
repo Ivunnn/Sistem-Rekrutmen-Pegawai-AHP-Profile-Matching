@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
@@ -32,18 +31,15 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
-       $request->session()->flash('flash_notification.success', 'Login Successfully');
-       return redirect()->intended($this->redirectTo);
+        $request->session()->flash('flash_notification.success', 'Login Successfully');
+        
+        // Redirect based on user role
+        if ($user->hasRole('Admin')) {
+            return redirect()->route('home');
+        } else {
+            return redirect()->route('pegawai.my-application');
+        }
     }
-
-    // public function redirectPath()
-    // {
-    //     // Do your logic to flash data to session...
-    //     session()->flash('message', 'LoGin Successfully!!!!');
-
-    //     // Return the results of the method we are overriding that we aliased.
-    //     return $this->laravelRedirectPath();
-    // }
 
     /**
      * Create a new controller instance.

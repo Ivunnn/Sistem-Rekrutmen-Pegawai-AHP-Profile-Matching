@@ -3,8 +3,8 @@
 @section('title', 'Detail Profile Matching')
 
 @section('content_header')
-    <h1>Detail Perhitungan Profile Matching</h1>
-    <p>Nama Pegawai: {{ $pegawai->name }} - Posisi: {{ $pegawai->bagian_dilamar }}</p>
+<h1>Detail Perhitungan Profile Matching</h1>
+<p>Nama Pegawai: {{ $pegawai->name }} - Posisi: {{ $pegawai->bagian_dilamar }}</p>
 @stop
 
 @section('content')
@@ -17,7 +17,7 @@
             </a>
         </div>
     </div>
-    <div class="card-body">
+    <div class="card-body table-responsive">
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -101,11 +101,11 @@
                     </thead>
                     <tbody>
                         @foreach(\App\Models\GapBobot::all() as $gap)
-                        <tr>
-                            <td>{{ $gap->selisih }}</td>
-                            <td>{{ $gap->bobot }}</td>
-                            <td>{{ $gap->keterangan }}</td>
-                        </tr>
+                            <tr>
+                                <td>{{ $gap->selisih }}</td>
+                                <td>{{ $gap->bobot }}</td>
+                                <td>{{ $gap->keterangan }}</td>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>

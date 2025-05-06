@@ -9,9 +9,9 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Pegawai;
-
 use App\Models\BobotLangsung;
 use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -35,11 +35,26 @@ class RegisterController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
-    // protected function authenticated(Request $request, $user)
-    // {
-    //    $request->session()->flash('flash_notification.success', 'Register Successfully');
-    //    return redirect()->intended($this->redirectTo);
-    // }
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        $this->guard()->login($user);
+
+        if ($user->hasRole('Admin')) {
+            return redirect()->route('home');
+        } else {
+            return redirect()->route('pegawai.my-application');
+        }
+    }
 
     /**
      * Create a new controller instance.
